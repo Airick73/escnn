@@ -1,0 +1,22 @@
+# For training on augmented datasets, you can use the same framework
+# Usage example for original vs augmented data:
+
+# Original PCam
+python main.py \
+    --x_train_path="data/raw/train/camelyonpatch_level_2_split_train_x.h5" \
+    --y_train_path="data/raw/train/camelyonpatch_level_2_split_train_y.h5" \
+    --x_val_path="data/raw/valid/camelyonpatch_level_2_split_valid_x.h5" \
+    --y_val_path="data/raw/valid/camelyonpatch_level_2_split_valid_y.h5" \
+    --x_test_path="data/raw/test/camelyonpatch_level_2_split_test_x.h5" \
+    --y_test_path="data/raw/test/camelyonpatch_level_2_split_test_y.h5" \
+    --output_dir="experiments/original_pcam"
+
+# Augmented PCam (assuming similar file structure)
+python main.py \
+    --x_train_path="data/augmented/variant1/camelyonpatch_level_2_split_train_x.h5" \
+    --y_train_path="data/augmented/variant1/camelyonpatch_level_2_split_train_y.h5" \
+    --x_val_path="data/augmented/variant1/camelyonpatch_level_2_split_valid_x.h5" \
+    --y_val_path="data/augmented/variant1/camelyonpatch_level_2_split_valid_y.h5" \
+    --x_test_path="data/raw/camelyonpatch_level_2_split_test_x.h5" \
+    --y_test_path="data/raw/camelyonpatch_level_2_split_test_y.h5" \
+    --output_dir="experiments/augmented_variant1"
