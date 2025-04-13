@@ -145,8 +145,9 @@ class ESCNN_DSF(enn.EquivariantModule):
         super(ESCNN_DSF, self).__init__()
         
         # Setup the group structure (rotation group C8)
-        self.r2_act = gspaces.Rot2dOnR2(group_order)
-        
+        # self.r2_act = gspaces.Rot2dOnR2(group_order) # outdated? 
+        self.r2_act = gspaces.rot2dOnR2(group_order)
+
         # Initial convolutional layer
         # RGB image has 3 channels with trivial representation
         self.in_type = enn.FieldType(self.r2_act, 3 * [self.r2_act.trivial_repr])
@@ -265,3 +266,16 @@ class ESCNN_DSF(enn.EquivariantModule):
         output = self.classifier(invariant)
         
         return output
+    
+    def evaluate_output_shape(self, input_shape):
+        """
+        Compute the output shape for a given input shape.
+
+        Args:
+            input_shape: Shape of the input tensor (batch_size, channels, height, width)
+            
+        Returns:
+            The shape of the output tensor (batch_size, num_classes)
+        """
+        # After all operations, we get a tensor with shape (batch_size, num_classes)
+        return (input_shape[0], self.classifier[-1].out_type.size)

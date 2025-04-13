@@ -5,6 +5,8 @@ import torch.optim as optim
 from tqdm import tqdm
 import numpy as np
 from sklearn.metrics import roc_auc_score
+from models.utils import PCamDataset
+from torch.utils.data import DataLoader
 
 class DSFTrainer:
     def __init__(self, model, device, train_loader, val_loader, 
